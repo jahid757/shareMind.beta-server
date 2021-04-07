@@ -31,6 +31,15 @@ client.connect(err => {
       })
   })
 
+  app.get("/userPost",(req, res) => {
+      const queryEmail = req.query.email
+      console.log(queryEmail);
+      userPostCollection.find({email:queryEmail}).sort({_id:-1})
+      .toArray((errors,document) => {
+          res.send(document)
+      })
+  })
+
 
     console.log('database connect success');
 });
